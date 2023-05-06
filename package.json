@@ -1,0 +1,86 @@
+{
+    "name": "antd-normalize-validate",
+    "version": "1.0.0",
+    "private": false,
+    "license": "MIT",
+    "description": "extra functionalities to ant design 5 form components, automating normalization and validation rules.",
+    "author": "rodrigo brandão <rodrigo.brandao.contato@gmail.com>",
+    "keywords": [
+        "react",
+        "form",
+        "antd",
+        "ant-design",
+        "normalize",
+        "validate",
+        "antdesign",
+        "input",
+        "select",
+        "datepicker"
+    ],
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "main": "./dist/index.js",
+    "typings": "./dist/index.d.ts",
+    "homepage": "https://github.com/brandaorodrigo/antd-normalize-validate",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brandaorodrigo/antd-normalize-validate.git"
+    },
+    "bugs": {
+        "url": "https://github.com/brandaorodrigo/antd-normalize-validate/issues"
+    },
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
+    },
+    "peerDependencies": {
+        "@ant-design/icons": ">=5.0.0",
+        "antd": ">=5.0.0",
+        "dayjs": ">=1.8.0",
+        "react": ">=17.0.0",
+        "react-dom": ">=17.0.0"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^5.0.1",
+        "antd": "^5.3.3",
+        "dayjs": "^1.11.7",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.1.0",
+        "@types/react": "^18.0.31",
+        "@types/react-dom": "^18.2.4",
+        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "@typescript-eslint/parser": "^5.59.2",
+        "eslint": "^8.40.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-import-helpers": "^1.3.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.1",
+        "typescript": "^5.0.4",
+        "web-vitals": "^3.3.1"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
