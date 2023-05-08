@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/antd-normalize-validate.svg)](https://www.npmjs.com/package/antd-normalize-validate)
 
-## **install**
+## install
 
 ```sh
 npm i antd-form-helper
@@ -10,9 +10,11 @@ npm i antd-form-helper
 
 ## normalize
 
+---
+
 description about normalize
 
-#### normalize: how to use
+### normalize: how to use
 
 ```javascript
 <Form.Item label="CPF" name="cpf" normalize={normalize.cpf}>
@@ -20,7 +22,7 @@ description about normalize
 </Form.Item>
 ```
 
-#### normalize: types
+### normalize: types
 
 -   `capitalize` _capitalizes the first letter of a string and lowercases the remaining letters._
 -   `cnpj` _normalize a brazilian cnpj number._
@@ -40,7 +42,7 @@ description about normalize
 -   `uppercase` _converts a string to uppercase._
 -   `zipcode` _normalize a brazilian zip code._
 
-#### normalize: example
+### normalize: example
 
 ```javascript
 import React, { useEffect } from 'react';
@@ -77,9 +79,11 @@ export default App;
 
 ## rules
 
+---
+
 description about rules
 
-#### rules: how to use
+### rules: how to use
 
 ```javascript
 <Form.Item
@@ -93,7 +97,7 @@ description about rules
 </Form.Item>
 ```
 
-#### rules: types
+### rules: types
 
 -   `cnpj` _validates a brazilian cnpj number._
 -   `cpf` _validates a brazilian cpf number._
@@ -105,7 +109,7 @@ description about rules
 -   `time` _validates a time in the format of "hh:mm"._
 -   `zipcode` _validates a brazilian zip code._
 
-#### rules: example
+### rules: example
 
 ```javascript
 import React, { useEffect } from 'react';
@@ -150,6 +154,8 @@ export default App;
 ```
 
 ## DatePicker: disabledDate
+
+---
 
 description
 
