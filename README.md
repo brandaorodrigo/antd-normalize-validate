@@ -2,21 +2,17 @@
 
 [![Version](https://img.shields.io/npm/v/antd-normalize-validate.svg)](https://www.npmjs.com/package/antd-normalize-validate)
 
-this package has extra functionalities to ant design 5 form components, automating **normalization** and **validation** rules.
-for that, the use of `Form.Item` is replaced by the component of this package called `Item`.
-it also has improvements for the `DatePicker` and `Select` components, which will be described in this documentation.
-
-## install
+## **install**
 
 ```sh
 npm i antd-form-helper
 ```
 
-## nomalize
+## **normalize**
 
 description about normalize
 
-### normalize: usage
+### normalize: how to use
 
 ```javascript
 <Form.Item label="CPF" name="cpf" normalize={normalize.cpf}>
@@ -24,7 +20,7 @@ description about normalize
 </Form.Item>
 ```
 
-### normalize types
+### normalize: types
 
 -   `capitalize` _capitalizes the first letter of a string and lowercases the remaining letters._
 -   `cnpj` _normalize a brazilian cnpj number._
@@ -44,7 +40,7 @@ description about normalize
 -   `uppercase` _converts a string to uppercase._
 -   `zipcode` _normalize a brazilian zip code._
 
-### normalize example
+### normalize: example
 
 ```javascript
 import React, { useEffect } from 'react';
@@ -79,11 +75,25 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### rules
+## **rules**
 
-description
+description about rules
 
-## rule types
+### rules: how to use
+
+```javascript
+<Form.Item
+    label="CPF"
+    name="cpf"
+    normalize={normalize.cpf}
+    required
+    rules={[{ required: true }, rule('cpf', '${label} is invalid.')]}
+>
+    <Input />
+</Form.Item>
+```
+
+## rules: types
 
 -   `cnpj` _validates a brazilian cnpj number._
 -   `cpf` _validates a brazilian cpf number._
@@ -95,7 +105,7 @@ description
 -   `time` _validates a time in the format of "hh:mm"._
 -   `zipcode` _validates a brazilian zip code._
 
-## rule example
+## rules: example
 
 ```javascript
 import React, { useEffect } from 'react';
