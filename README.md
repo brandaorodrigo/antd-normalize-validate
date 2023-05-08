@@ -8,9 +8,9 @@
 npm i antd-form-helper
 ```
 
-## normalize
-
 ---
+
+## normalize
 
 description about normalize
 
@@ -77,9 +77,9 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## rules
-
 ---
+
+## rules
 
 description about rules
 
