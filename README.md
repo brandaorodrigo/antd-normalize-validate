@@ -1,3 +1,5 @@
+# antd from helper
+
 ![logo](https://github.com/brandaorodrigo/antd-normalize-validate/blob/master/logo.png)
 
 [![Version](https://img.shields.io/npm/v/antd-normalize-validate.svg)](https://www.npmjs.com/package/antd-normalize-validate)
@@ -10,78 +12,66 @@ it also has improvements for the `DatePicker` and `Select` components, which wil
 
 ```sh
 npm i antd
-npm i @ant-design/icons
-npm i dayjs
 ```
 
 ## installation
 
 ```sh
-npm i antd-normalize-validate
+npm i antd-form-helper
 ```
 
-## component: Item
+## nomalize
 
-the `Item` component will serve to replace `Form.Item` from the original antdesign five documentation.
-it behaves identical to the original component, but has three more optional properties.
+description about normalize
 
-### props: Item
-
--   `format` _normalizes and validates field based on format. (below list of formats)._
--   `formatMessage` _custom error message if format validation fails._
--   `requiredMessage` _custom error message for required validation._
-
-### props: Item: format
+### normalize types
 
 -   `capitalize` _capitalizes the first letter of a string and lowercases the remaining letters._
--   **`cnpj`** _normalize and validates a brazilian cnpj number._
--   **`cpf`** _normalize and validates a brazilian cpf number._
--   **`currency`** _normalize and validates a currency value in the international format._
--   **`date`** _normalize and validates a date in the format of "dd/mm/yyyy"._
--   **`email`** _normalize and validates an email address._
--   **`fullname`** _normalize and validates a fullname._
+-   `cnpj` _normalize a brazilian cnpj number._
+-   `cpf` _normalize a brazilian cpf number._
+-   `currencyToNumber` _convert currency to float value._
+-   `currency` _normalize a currency value in the international format._
+-   `dateToIso` _convert a data to the iso format._
+-   `date` _normalize a date in the format of "dd/mm/yyyy"._
+-   `email` _normalize an email address._
+-   `fullname` _normalize a fullname._
 -   `lowercase` _converts a string to lowercase._
 -   `numeric` _removes all non-numeric characters from a string._
--   **`phone`** _normalize and validates a phone number, ensuring that it has at least 10 digits._
--   **`time`** _normalize and validates a time in the format of "hh:mm"._
+-   `phoneToInternational` _convert a phone to the international format._
+-   `phone` _normalize a phone number._
+-   `time` _normalize a time in the format of "hh:mm"._
 -   `titlecase` _capitalizes the first letter of each word in a string._
 -   `uppercase` _converts a string to uppercase._
--   **`zipcode`** _normalize and validates a brazilian zip code._
+-   `zipcode` _normalize a brazilian zip code._
 
-### example: Item
+### normalize example
 
 ```javascript
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Button, Form } from 'antd';
+import { Button, Form, Input } from 'antd';
 
-import { Item, DatePicker } from 'antd-normalize-validate';
+import { normalize } from '../utils/antd';
 
 const App: React.FC = () => {
     const [form] = Form.useForm();
 
+    useEffect(() => {
+        form.setFieldsValue({
+            cpf: normalize.cpf('18137944133'),
+        });
+    }, []);
+
     return (
-        <Form form={form} onFinish={(submit: any) => console.log(submit)}>
-            <Item
-                format="cpf"
-                formatMessage="cpf is incorrect."
-                label="cpf"
-                name="cpf"
-                required
-                requiredMessage="it is necessary to enter the cpf."
-            >
+        <Form
+            form={form}
+            onFinish={(data: any) => console.log(data)}
+            validateTrigger="onBlur"
+        >
+            <Form.Item label="CPF" name="cpf" normalize={normalize.cpf}>
                 <Input />
-            </Item>
-            <Item format="cnpj" label="cnpj" name="cnpj" required>
-                <Input placeholder="enter the cnpj..." />
-            </Item>
-            <Item format="time" label="time" name="time" required>
-                <Input />
-            </Item>
-            <Item format="fullname" label="fullname" name="fullname" required>
-                <Input.TextArea maxLength={20} showCount />
-            </Item>
-            <Button htmlType="submit">submit</Button>
+            </Form.Item>
+            <Button htmlType="submit">Send</Button>
         </Form>
     );
 };
@@ -89,15 +79,160 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## component: DatePicker
+### rules
 
-the `DatePicker` component will serve to replace the `DatePicker` from the original antdesign 5 documentation.
-it behaves identically to the original component, but has 2 more optional properties.
+description
 
-### props: DatePicker
+## rule types
 
--   `minDate` _dayjs with minimal date for calendar._
--   `maxDate` _dayjs with max date for calendar._
+-   `cnpj` _validates a brazilian cnpj number._
+-   `cpf` _validates a brazilian cpf number._
+-   `currency` _validates a currency value in the international format._
+-   `date` _validates a date in the format of "dd/mm/yyyy"._
+-   `email` _validates an email address._
+-   `fullname` _validates a fullname._
+-   `phone` _validates a phone number, ensuring that it has at least 10 digits._
+-   `time` _validates a time in the format of "hh:mm"._
+-   `zipcode` _validates a brazilian zip code._
+
+## rule example
+
+```javascript
+import React, { useEffect } from 'react';
+
+import { Button, Form, Input } from 'antd';
+
+import { normalize, rule } from '../utils/antd';
+
+const App: React.FC = () => {
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        form.setFieldsValue({
+            cpf: normalize.cpf('18137944133'),
+        });
+    }, []);
+
+    return (
+        <Form
+            form={form}
+            onFinish={(data: any) => console.log(data)}
+            validateTrigger="onBlur"
+        >
+            <Form.Item
+                label="CPF"
+                name="cpf"
+                normalize={normalize.cpf}
+                required
+                rules={[
+                    { required: true },
+                    rule('cpf', '${label} is invalid.'),
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Button htmlType="submit">Send</Button>
+        </Form>
+    );
+};
+
+export default App;
+```
+
+## DatePicker: disabledDate
+
+description
+
+## DatePicker: disabledData: example
+
+```javascript
+import React, { useEffect } from 'react';
+
+import { Button, DatePicker, Form } from 'antd';
+import dayjs from 'dayjs';
+
+import { disabledDate, normalize, rule } from '../utils/antd';
+
+const App: React.FC = () => {
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        form.setFieldsValue({
+            cpf: normalize.cpf('18137944133'),
+        });
+    }, []);
+
+    return (
+        <Form
+            form={form}
+            onFinish={(data: any) => console.log(data)}
+            validateTrigger="onBlur"
+        >
+            <Form.Item
+                label="Date"
+                name="date"
+                required
+                rules={[{ required: true }, rule('date')]}
+            >
+                <DatePicker
+                    disabledDate={(date) =>
+                        disabledDate(
+                            date,
+                            dayjs('2023-01-01'),
+                            dayjs('2023-12-31')
+                        )
+                    }
+                    format="DD/MM/YYYY"
+                />
+            </Form.Item>
+            <Form.Item
+                label="Date"
+                name="date"
+                required
+                rules={[{ required: true }, rule('date')]}
+            >
+                <DatePicker
+                    disabledDate={(date) =>
+                        disabledDate(date, false, dayjs('2023-12-31'))
+                    }
+                    format="DD/MM/YYYY"
+                />
+            </Form.Item>
+            <Form.Item
+                label="Date"
+                name="date"
+                required
+                rules={[{ required: true }, rule('date')]}
+            >
+                <DatePicker
+                    disabledDate={(date) =>
+                        disabledDate(date, dayjs('2023-01-01'))
+                    }
+                    format="MM/YYYY"
+                    picker="month"
+                />
+            </Form.Item>
+            <Form.Item
+                label="Range"
+                name="range"
+                required
+                rules={[{ required: true }]}
+            >
+                <DatePicker.RangePicker
+                    disabledDate={(date) =>
+                        disabledDate(date, dayjs(), dayjs().add(6, 'days'))
+                    }
+                    format="DD/MM/YYYY"
+                    picker="date"
+                />
+            </Form.Item>
+            <Button htmlType="submit">Send</Button>
+        </Form>
+    );
+};
+
+export default App;
+```
 
 ### example: DatePicker
 
@@ -449,3 +584,68 @@ export default App;
 ## license
 
 [mit licensed](LICENSE)
+
+```javascript
+import React, { useEffect, useState } from 'react';
+
+import { Button, Form, Input } from 'antd';
+
+import { normalize, rule } from '../utils/antd';
+
+const App: React.FC = () => {
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        form.setFieldsValue({
+            cpf: normalize.cpf('18137944133'),
+            time: normalize.time('22:11'),
+            fullname: normalize.fullname('carl sagan'),
+        });
+    }, []);
+
+    const [result, setResult] = useState<any>();
+
+    const onFinish = (data: any) => {
+        setResult(JSON.stringify(data));
+    };
+
+    return (
+        <Form form={form} onFinish={onFinish} validateTrigger="onBlur">
+            <Form.Item
+                label="CPF"
+                name="cpf"
+                normalize={normalize.cpf}
+                required
+                rules={[
+                    { required: true },
+                    rule('cpf', '${label} is invalid.')
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="Time"
+                name="time"
+                normalize={normalize.time}
+                required
+                rules={[{ required: true }, rule('time')]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="Fullname"
+                name="fullname"
+                normalize={normalize.fullname}
+                required
+                rules={[{ required: true }, rule('fullname')]}
+            >
+                <Input.TextArea maxLength={100} showCount />
+            </Form.Item>
+            <Button htmlType="submit">Send</Button>
+            <div>{result}</div>
+        </Form>
+    );
+};
+
+export default App;
+```
