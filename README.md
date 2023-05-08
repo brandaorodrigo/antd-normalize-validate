@@ -1,6 +1,4 @@
-# antd from helper
-
-![logo](https://github.com/brandaorodrigo/antd-normalize-validate/blob/master/logo.png)
+# antd-form-helper
 
 [![Version](https://img.shields.io/npm/v/antd-normalize-validate.svg)](https://www.npmjs.com/package/antd-normalize-validate)
 
@@ -8,13 +6,7 @@ this package has extra functionalities to ant design 5 form components, automati
 for that, the use of `Form.Item` is replaced by the component of this package called `Item`.
 it also has improvements for the `DatePicker` and `Select` components, which will be described in this documentation.
 
-## required
-
-```sh
-npm i antd
-```
-
-## installation
+## install
 
 ```sh
 npm i antd-form-helper
@@ -23,6 +15,14 @@ npm i antd-form-helper
 ## nomalize
 
 description about normalize
+
+### normalize: usage
+
+```javascript
+<Form.Item label="CPF" name="cpf" normalize={normalize.cpf}>
+    <Input />
+</Form.Item>
+```
 
 ### normalize types
 
